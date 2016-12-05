@@ -4,7 +4,7 @@
 import pymongo
 import pika
 from multiprocessing import Process, current_process
-from flowcollector.settings import *
+from settings import *
 from mongodbconn import MongoHelper
 
 
