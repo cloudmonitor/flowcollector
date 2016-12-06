@@ -1,7 +1,7 @@
 # _*_ coding:utf-8 _*_
 
-from multiprocessing import Process, current_process
 import pika
+from multiprocessing import Process, current_process
 from settings import *
 
 
@@ -20,7 +20,7 @@ class FlowCollect(Process):
         connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.1.180'))
         channel = connection.channel()
         channel.queue_declare(queue='flow', durable=True)
-        while 1 == 1 and self.flag:
+        while True and self.flag:
             r = requests.get(self.url + "&flowID=" + str(flowID), headers=headers, timeout=3)
             if r.status_code != 200:
                 break

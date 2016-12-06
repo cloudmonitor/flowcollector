@@ -1,7 +1,6 @@
 # _*_ coding:utf-8 _*_
 
 
-import pymongo
 import pika
 from multiprocessing import Process, current_process
 from settings import *
