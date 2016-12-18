@@ -34,6 +34,7 @@ class FlowCollect(Process):
                 flow = {}
                 flow["project_id"] = self.instance["tenant_id"]
                 flow["instance_id"] = self.instance["id"]
+                flow["instance_name"] = self.instance["name"]
                 flow["port_id"] = self.instance["interfaceAttachments"][0]["port_id"]
                 flow["mac_addr"] = self.instance["interfaceAttachments"][0]["mac_addr"].replace(":", "").upper()
                 flow["fixed_ip"] = self.instance["interfaceAttachments"][0]["fixed_ips"][0]["ip_address"]
