@@ -68,7 +68,7 @@ class FlowCollect(Process):
                                       delivery_mode=2,  # make message persistent
                                       )
                                   )
-            print " [%s] Sent %r" % (current_process().pid, json.dumps(flows_insert))
+            # print " [%s] Sent %r" % (current_process().pid, json.dumps(flows_insert))
             time.sleep(3)
         connection.close()
 

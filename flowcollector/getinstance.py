@@ -45,3 +45,7 @@ def get_hypervisor_instances_and_interface():
             instance['interfaceAttachments'] = r.json()['interfaceAttachments']
             hypervisor_servers_list.append(instance)
     return hypervisor_servers_list
+
+
+if __name__ == "__main__":
+    print get_hypervisor_instances_and_interface()

@@ -16,11 +16,11 @@ class FlowStorge(Process):
         super(FlowStorge, self).__init__()
 
     def callback(self, ch, method, properties, body):
-        print " [%s] Received %r" % (current_process().pid, body)
+        # print " [%s] Received %r" % (current_process().pid, body)
         db = FlowStorge.conn["flowdb"]
         flows = json.loads(body)
         db.flow.insert(flows)
-        print " [%s] Store Done" % (current_process().pid, )
+        # print " [%s] Store Done" % (current_process().pid, )
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
     def run(self):
