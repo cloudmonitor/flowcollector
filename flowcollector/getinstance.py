@@ -38,8 +38,8 @@ def get_hypervisor_instances_and_interface():
     headers = {"Content-type": "application/json", "X-Auth-Token": admin_token_id, "Accept": "application/json"}
     url = NOVA_ENDPOINT.format(tenant_id=admin_tenant_id)
     all_instance_info = get_all_tenant_instances()
+    hostname = gethostname()
     for instance in all_instance_info['servers']:
-        hostname = gethostname()
         if instance['OS-EXT-SRV-ATTR:hypervisor_hostname'] == hostname:
             r = requests.get(url + '/servers/' + instance['id'] + "/os-interface", headers=headers)
             instance['interfaceAttachments'] = r.json()['interfaceAttachments']

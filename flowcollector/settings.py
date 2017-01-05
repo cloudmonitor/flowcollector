@@ -7,7 +7,7 @@ import json
 import time
 import datetime
 
-DB_CONN = "mongodb://flowdb:flowdb@192.168.1.180:27017/flowdb"
+FLOWDB_CONN = "mongodb://flowdb:flowdb@192.168.1.180:27017/flowdb"
 
 SFLOW_RT_API_BASE_URL = 'http://192.168.1.180:8008'
 

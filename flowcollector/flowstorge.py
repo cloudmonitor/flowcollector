@@ -10,7 +10,7 @@ from mongodbconn import MongoHelper
 class FlowStorge(Process):
     """存储流数据到数据库"""
     # connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.1.180'))
-    conn = MongoHelper().getconn()
+    conn = MongoHelper(FLOWDB_CONN).getconn()
 
     def __init__(self):
         super(FlowStorge, self).__init__()

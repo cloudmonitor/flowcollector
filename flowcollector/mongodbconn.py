@@ -1,7 +1,7 @@
 # _*_ coding:utf-8 _*_
 
 import pymongo
-from settings import DB_CONN
+from settings import FLOWDB_CONN
 
 
 class MongoHelper(object):
@@ -9,8 +9,8 @@ class MongoHelper(object):
 
     conn = None
 
-    def __init__(self):
-        self.conn = pymongo.MongoClient(DB_CONN)
+    def __init__(self, db_url):
+        self.conn = pymongo.MongoClient(db_url)
 
     def getconn(self):
         return self.conn
@@ -19,5 +19,5 @@ class MongoHelper(object):
         self.conn.close()
 
 if __name__ == "__main__":
-    MongoHelper().getconn()['flowdb'].flow.remove({})
+    MongoHelper(FLOWDB_CONN).getconn()['flowdb'].flow.remove({})
 
