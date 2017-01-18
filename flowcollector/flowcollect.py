@@ -32,7 +32,8 @@ class FlowCollect(Process):
             flows_insert = []
             for f in flows:
                 flow = {}
-                flow["project_id"] = self.instance["tenant_id"]
+                flow["tenant_id"] = self.instance["tenant_id"]
+                flow["tenant_name"] = self.instance["tenant_name"]
                 flow["instance_id"] = self.instance["id"]
                 flow["instance_name"] = self.instance["name"]
                 flow["port_id"] = self.instance["interfaceAttachments"][0]["port_id"]
