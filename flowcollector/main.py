@@ -11,26 +11,23 @@ from flowcollect import FlowCollect
 
 def flow_collect():
     pool = []
-
     while 1 == 1:
+        # 获取虚拟机信息
         instance_info = get_hypervisor_instances_and_interface()
-
         # 删除 由于虚拟机删除所遗留的采集进程以及采集流量项
         for pro in pool:
-            kill = True
+            is_delete = True
             for instance in instance_info:
                 if pro.name == instance["id"]:
-                    kill = False
+                    is_delete = False
                     break
-            if kill:
-                flow_api = FlOW_API % (pro.name)
+            if is_delete:
+                flow_api = FlOW_API % (pro.name, )
                 url = SFLOW_RT_API_BASE_URL + flow_api
                 ret = requests.get(url)
                 if ret.status_code == 200:
                     requests.delete(url)
                 pro.flag = False
-                # os.kill(pro.pid, signal.SIGTERM)
-                pro.terminate()
                 pool.remove(pro)
 
         # 针对每个虚拟机创建流量采集进程
@@ -63,7 +60,6 @@ def flow_collect():
                         p.daemon = True
                         p.start()
                         pool.append(p)
-
             else:
                 flow_api = FlOW_API % (instance["id"])
                 url = SFLOW_RT_API_BASE_URL + flow_api
@@ -73,9 +69,8 @@ def flow_collect():
                     for pro in pool:
                         if pro.name == instance["id"]:
                             pro.flag = False
-                            pro.terminate()
                             pool.remove(pro)
-
+        # 每隔一分钟检测一次
         time.sleep(60)
 
 if __name__ == "__main__":
