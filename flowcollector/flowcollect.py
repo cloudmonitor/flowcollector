@@ -72,5 +72,6 @@ class FlowCollect(Process):
                                   )
             # print " [%s] Sent %r" % (current_process().pid, json.dumps(flows_insert))
             time.sleep(3)
+        channel.close()
         connection.close()
 
