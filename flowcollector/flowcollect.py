@@ -26,7 +26,7 @@ class FlowCollect(Process):
                 break
             flows = r.json()
             if len(flows) == 0:
-                time.sleep(1)
+                connection.sleep(1)
                 continue
             flowID = flows[0]["flowID"]
             flows_insert = []
@@ -71,7 +71,7 @@ class FlowCollect(Process):
                                       )
                                   )
             # print " [%s] Sent %r" % (current_process().pid, json.dumps(flows_insert))
-            time.sleep(3)
+            connection.sleep(1)
         channel.close()
         connection.close()
 
