@@ -28,6 +28,7 @@ def flow_collect():
                 if ret.status_code == 200:
                     requests.delete(url)
                 pro.flag = False
+                pro.terminate()
                 pool.remove(pro)
 
         # 针对每个虚拟机创建流量采集进程
@@ -69,6 +70,7 @@ def flow_collect():
                     for pro in pool:
                         if pro.name == instance["id"]:
                             pro.flag = False
+                            pro.terminate()
                             pool.remove(pro)
         # 每隔一分钟检测一次
         time.sleep(60)
